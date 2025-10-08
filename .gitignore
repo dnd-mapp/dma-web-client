@@ -28,6 +28,10 @@ __screenshots__/
 !.vscode/extensions.json
 .history/*
 
+# Certificates, configuration files, and dot env files
+certificate*.pem
+public/config.json
+
 # System files
 .DS_Store
 Thumbs.db
