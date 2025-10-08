@@ -2,11 +2,6 @@
     "$schema": "node_modules/@angular/cli/lib/config/schema.json",
     "newProjectRoot": "projects",
     "version": 1,
-    "schematics": {
-        "@schematics/angular:component": {
-            "style": "scss"
-        }
-    },
     "projects": {
         "dma-web-client": {
             "projectType": "application",
@@ -62,7 +57,9 @@
                 "serve": {
                     "builder": "@angular/build:dev-server",
                     "options": {
-                        "buildTarget": "dma-web-client:build:dev"
+                        "buildTarget": "dma-web-client:build:dev",
+                        "host": "localhost.www.dndmapp.dev",
+                        "port": 4200
                     }
                 },
                 "test": {
@@ -81,5 +78,13 @@
                 }
             }
         }
+    },
+    "schematics": {
+        "@schematics/angular:component": {
+            "style": "scss"
+        }
+    },
+    "cli": {
+        "analytics": "e2db422f-72e6-4c23-a8bb-077919ca2880"
     }
 }
