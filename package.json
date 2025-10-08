@@ -12,6 +12,7 @@
         "format:write": "npx prettier -w ."
     },
     "dependencies": {
+        "@angular/cdk": "~20.2.0",
         "@angular/common": "^20.3.0",
         "@angular/compiler": "^20.3.0",
         "@angular/core": "^20.3.0",
