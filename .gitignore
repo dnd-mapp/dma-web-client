@@ -2,23 +2,11 @@
 
 # Compiled output
 /dist
-/tmp
-/out-tsc
-/bazel-out
 
 # Node
 /node_modules
-npm-debug.log
-yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
 .idea/*
 !.idea/runConfigurations/
 !.idea/dma-web-client.iml
