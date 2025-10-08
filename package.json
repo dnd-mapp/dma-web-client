@@ -8,6 +8,7 @@
         "build": "npx ng build",
         "build:dev": "npx ng build -c dev",
         "test": "npx ng test",
+        "test:dev": "npx ng test -c dev",
         "format:check": "npx prettier -l .",
         "format:write": "npx prettier -w ."
     },
