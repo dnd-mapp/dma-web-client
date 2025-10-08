@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'dma-root',
-    imports: [RouterOutlet],
     templateUrl: './root.component.html',
     styleUrl: './root.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [],
 })
-export class RootComponent {
-    protected readonly title = signal('dma-web-client');
-}
+export class RootComponent {}
