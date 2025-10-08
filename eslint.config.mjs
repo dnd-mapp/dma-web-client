@@ -1,5 +1,6 @@
 import eslint from '@eslint/js';
 import angular from 'angular-eslint';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import tsEslint from 'typescript-eslint';
 
 export default tsEslint.config(
@@ -10,6 +11,7 @@ export default tsEslint.config(
             ...tsEslint.configs.recommended,
             ...tsEslint.configs.stylistic,
             ...angular.configs.tsRecommended,
+            eslintPluginPrettierRecommended,
         ],
         processor: angular.processInlineTemplates,
         rules: {
