@@ -1,22 +1,23 @@
 {
-    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "$schema": "node_modules/@angular/cli/lib/config/schema.json",
     "newProjectRoot": "projects",
     "version": 1,
+    "schematics": {
+        "@schematics/angular:component": {
+            "style": "scss"
+        }
+    },
     "projects": {
         "dma-web-client": {
             "projectType": "application",
-            "schematics": {
-                "@schematics/angular:component": {
-                    "style": "scss"
-                }
-            },
+            "prefix": "dma",
             "root": "",
             "sourceRoot": "src",
-            "prefix": "app",
             "architect": {
                 "build": {
                     "builder": "@angular/build:application",
                     "options": {
+                        "allowedCommonJsDependencies": [],
                         "assets": [
                             {
                                 "glob": "**/*",
@@ -25,12 +26,16 @@
                         ],
                         "browser": "src/main.ts",
                         "inlineStyleLanguage": "scss",
+                        "scripts": [],
+                        "security": {
+                            "autoCsp": true
+                        },
                         "styles": ["src/styles.scss"],
                         "tsConfig": "tsconfig.app.json"
                     },
-                    "defaultConfiguration": "production",
+                    "defaultConfiguration": "prod",
                     "configurations": {
-                        "production": {
+                        "prod": {
                             "budgets": [
                                 {
                                     "type": "initial",
@@ -43,29 +48,22 @@
                                     "maximumError": "8kB"
                                 }
                             ],
-                            "outputHashing": "all"
+                            "subresourceIntegrity": true
                         },
-                        "development": {
+                        "dev": {
                             "extractLicenses": false,
+                            "namedChunks": true,
                             "optimization": false,
-                            "sourceMap": true
+                            "sourceMap": true,
+                            "watch": true
                         }
                     }
                 },
                 "serve": {
                     "builder": "@angular/build:dev-server",
-                    "defaultConfiguration": "development",
-                    "configurations": {
-                        "production": {
-                            "buildTarget": "dma-web-client:build:production"
-                        },
-                        "development": {
-                            "buildTarget": "dma-web-client:build:development"
-                        }
+                    "options": {
+                        "buildTarget": "dma-web-client:build:dev"
                     }
-                },
-                "extract-i18n": {
-                    "builder": "@angular/build:extract-i18n"
                 },
                 "test": {
                     "builder": "@angular/build:karma",
