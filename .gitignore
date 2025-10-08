@@ -3,6 +3,7 @@
 # Compiled output
 /dist
 .angular/
+.vite/
 
 reports/
 __screenshots__/

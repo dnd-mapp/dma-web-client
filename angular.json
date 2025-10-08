@@ -61,31 +61,6 @@
                         "host": "localhost.www.dndmapp.dev",
                         "port": 4200
                     }
-                },
-                "test": {
-                    "builder": "@angular/build:karma",
-                    "options": {
-                        "codeCoverage": true,
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "public"
-                            }
-                        ],
-                        "inlineStyleLanguage": "scss",
-                        "main": "test/setup-test.ts",
-                        "scripts": [],
-                        "styles": ["src/styles.scss"],
-                        "tsConfig": "tsconfig.spec.json",
-                        "karmaConfig": "karma.conf.js"
-                    },
-                    "defaultConfiguration": "ci",
-                    "configurations": {
-                        "ci": {
-                            "watch": false
-                        },
-                        "dev": {}
-                    }
                 }
             }
         }

@@ -7,8 +7,9 @@
         "start": "npx ng serve",
         "build": "npx ng build",
         "build:dev": "npx ng build -c dev",
-        "test": "npx ng test",
-        "test:dev": "npx ng test -c dev",
+        "test": "npx vitest run",
+        "test:dev": "npx vitest",
+        "test:coverage-reports": "npx vite preview --outDir reports/dma-web-client",
         "format:check": "npx prettier -l .",
         "format:write": "npx prettier -w ."
     },
@@ -25,17 +26,18 @@
         "tslib": "^2.3.0"
     },
     "devDependencies": {
+        "@analogjs/platform": "~1.21.0",
+        "@analogjs/vite-plugin-angular": "~1.21.0",
+        "@analogjs/vitest-angular": "~1.21.0",
         "@angular/build": "^20.3.4",
         "@angular/cli": "^20.3.4",
         "@angular/compiler-cli": "^20.3.0",
-        "@types/jasmine": "~5.1.0",
-        "jasmine-core": "~5.9.0",
-        "karma": "~6.4.0",
-        "karma-chrome-launcher": "~3.2.0",
-        "karma-coverage": "~2.2.0",
-        "karma-jasmine": "~5.1.0",
-        "karma-jasmine-html-reporter": "~2.1.0",
+        "@vitest/browser": "~3.2.0",
+        "@vitest/coverage-v8": "~3.2.0",
+        "@vitest/ui": "~3.2.0",
+        "playwright": "~1.56.0",
         "prettier-plugin-organize-imports": "~4.3.0",
-        "typescript": "~5.9.2"
+        "typescript": "~5.9.2",
+        "vite-tsconfig-paths": "~5.1.0"
     }
 }
