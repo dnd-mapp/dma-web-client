@@ -1,7 +1,7 @@
 # DnD Mapp - Web client
 
 ![License](https://img.shields.io/github/license/dnd-mapp/dma-web-client)
-[![CI Workflow Status](https://img.shields.io/github/workflow/status/dnd-mapp/dma-web-client/CI?label=CI&logo=github)](https://github.com/dnd-mapp/dma-web-client/actions)
+[![CI Workflow Status](https://img.shields.io/github/actions/workflow/status/dnd-mapp/dma-web-client/ci.yml?branch=main&logo=github&label=CI)](https://github.com/dnd-mapp/dma-web-client/actions/workflows/ci.yml)
 
 ## Table of Contents
 
