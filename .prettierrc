@@ -1,6 +1,6 @@
 {
     "arrowParens": "always",
-    "endOfLine": "crlf",
+    "endOfLine": "lf",
     "overrides": [
         {
             "files": ["*.html"],
