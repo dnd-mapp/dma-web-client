@@ -1,0 +1,21 @@
+{
+    "arrowParens": "always",
+    "editorconfig": true,
+    "endOfLine": "crlf",
+    "overrides": [
+        {
+            "files": ["*.html"],
+            "options": {
+                "parser": "angular"
+            }
+        }
+    ],
+    "plugins": ["prettier-plugin-organize-imports"],
+    "printWidth": 120,
+    "quoteProps": "consistent",
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "all",
+    "useTabs": false
+}
