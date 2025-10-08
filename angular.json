@@ -61,6 +61,12 @@
                         "host": "localhost.www.dndmapp.dev",
                         "port": 4200
                     }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": ["src/**/*.ts", "src/**/*.html", "test/**/*.ts"]
+                    }
                 }
             }
         }
@@ -71,6 +77,7 @@
         }
     },
     "cli": {
-        "analytics": "e2db422f-72e6-4c23-a8bb-077919ca2880"
+        "analytics": "e2db422f-72e6-4c23-a8bb-077919ca2880",
+        "schematicCollections": ["angular-eslint"]
     }
 }
