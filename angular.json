@@ -58,8 +58,19 @@
                     "builder": "@angular/build:dev-server",
                     "options": {
                         "buildTarget": "dma-web-client:build:dev",
-                        "host": "localhost.www.dndmapp.dev",
                         "port": 4200
+                    },
+                    "defaultConfiguration": "ssl",
+                    "configurations": {
+                        "ssl": {
+                            "host": "localhost.www.dndmapp.dev",
+                            "ssl": true,
+                            "sslCert": "certificate.pem",
+                            "sslKey": "certificate-key.pem"
+                        },
+                        "http": {
+                            "host": "localhost"
+                        }
                     }
                 },
                 "lint": {
