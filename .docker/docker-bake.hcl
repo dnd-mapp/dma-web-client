@@ -27,6 +27,9 @@ target "default" {
         "org.opencontainers.image.description=The main web client of the D&D Mapp platform."
     ]
     cache-from = [
-        "type=registry,dnd-mapp/dma-web-client:cache"
+        "type=gha"
+    ]
+    cache-to = [
+        "type=gha,mode=max,repository=dnd-mapp/dma-web-client"
     ]
 }
