@@ -8,6 +8,7 @@
         "start:http": "npx ng serve -c http",
         "build": "npx ng build",
         "build:dev": "npx ng build -c dev",
+        "docker:build": "docker buildx bake -f .docker/docker-bake.hcl",
         "test": "npx vitest run",
         "test:dev": "npx vitest",
         "test:coverage-reports": "npx vite preview --outDir reports/dma-web-client",
