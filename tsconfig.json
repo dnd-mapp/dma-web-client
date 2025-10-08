@@ -5,6 +5,7 @@
     "files": [],
     "compileOnSave": false,
     "compilerOptions": {
+        "baseUrl": ".",
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
@@ -20,6 +21,10 @@
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
+        "paths": {
+            "@dnd-mapp/web-client/testing": ["test/index.ts"]
+        },
+        "rootDir": ".",
         "skipLibCheck": true,
         "strictBindCallApply": true,
         "strictBuiltinIteratorReturn": true,
