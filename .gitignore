@@ -2,6 +2,10 @@
 
 # Compiled output
 /dist
+.angular/
+
+reports/
+__screenshots__/
 
 # Node
 /node_modules
@@ -22,16 +26,6 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-__screenshots__/
 
 # System files
 .DS_Store
