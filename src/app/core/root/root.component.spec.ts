@@ -1,8 +1,8 @@
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { RootComponent } from './root.component';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { RootHarness } from '@dnd-mapp/web-client/testing';
+import { RootComponent } from './root.component';
 
 describe('RootComponent', () => {
     @Component({
