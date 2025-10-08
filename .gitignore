@@ -19,6 +19,13 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.idea/*
+!.idea/runConfigurations/
+!.idea/dma-web-client.iml
+!.idea/modules.xml
+!.idea/prettier.xml
+!.idea/vcs.xml
+!.idea/watcherTasks.xml
 
 # Visual Studio Code
 .vscode/*
