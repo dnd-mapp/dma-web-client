@@ -1,0 +1,14 @@
+.angular/
+.vite/
+dist/
+reports/
+
+.github/
+
+.idea/
+.vscode/
+
+node_modules/
+
+certificate*.pem
+public/config.json
