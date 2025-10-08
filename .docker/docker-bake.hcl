@@ -19,4 +19,14 @@ target "default" {
         "type=provenance,mode=max",
         "type=sbom"
     ]
+    annotations = [
+        "org.opencontainers.image.authors=NoNamer777",
+        "org.opencontainers.image.source=https://github.com/dnd-mapp/dma-web-client",
+        "org.opencontainers.image.licenses=AGPL-3.0",
+        "org.opencontainers.image.title=\"D&D Mapp - Web client\"",
+        "org.opencontainers.image.description=The main web client of the D&D Mapp platform."
+    ]
+    cache-from = [
+        "type=registry,dnd-mapp/dma-web-client:cache"
+    ]
 }
