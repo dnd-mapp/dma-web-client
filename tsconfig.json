@@ -5,23 +5,33 @@
     "files": [],
     "compileOnSave": false,
     "compilerOptions": {
-        "strict": true,
-        "noImplicitOverride": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "skipLibCheck": true,
-        "isolatedModules": true,
         "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
+        "isolatedModules": true,
+        "lib": ["ES2024", "DOM"],
+        "module": "preserve",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "strictBindCallApply": true,
+        "strictBuiltinIteratorReturn": true,
+        "strictFunctionTypes": true,
         "target": "ES2022",
-        "module": "preserve"
+        "useUnknownInCatchVariables": true
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,
-        "typeCheckHostBindings": true,
-        "strictTemplates": true
+        "strictTemplates": true,
+        "typeCheckHostBindings": true
     }
 }
