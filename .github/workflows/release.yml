@@ -1,0 +1,60 @@
+name: Release
+on:
+    workflow_dispatch:
+        inputs:
+            version:
+                description: What kind of version should be released.
+                required: true
+                type: choice
+                options:
+                    - major
+                    - premajor
+                    - minor
+                    - preminor
+                    - patch
+                    - prepatch
+                    - prerelease
+            prerelease-id:
+                description: The ID to use for the prerelease.
+                required: false
+                type: choice
+                options:
+                    - alpha
+                    - beta
+                    - rc
+jobs:
+    bump-version:
+        name: Bump version
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v5
+              with:
+                  cache: npm
+                  node-version-file: .tool-versions
+                  cache-dependency-path: package-lock.json
+
+            - name: Generate GitHub app token
+              id: token
+              uses: actions/create-github-app-token@v2
+              with:
+                  app-id: ${{ secrets.APP_ID }}
+                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+            - name: Configure git
+              run: |
+                  git config user.name "DnD Mapp GitHub Authentication App[bot]"
+                  git config.user.email "dnd-mapp-github-authentication-app[bot]@users.noreply.github.com"
+
+            - name: Bump version
+              run: npm version ${{ inputs.version }} --preid ${{ inputs.prerelease-id }} --no-git-tag-version
+
+            - name: Commit and push changes
+              env: ${{ steps.token.outputs.token }}
+              run: |
+                  git add .
+                  git commit -m "chore: Bump version"
+                  git push origin main
