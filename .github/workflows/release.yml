@@ -44,10 +44,10 @@ jobs:
               id: token
               uses: actions/create-github-app-token@v2
               with:
-                  app-id: ${{ secrets.APP_ID }}
-                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
                   owner: dnd-mapp
                   repositories: dma-web-client
+                  app-id: ${{ secrets.AUTH_APP_ID }}
+                  private-key: ${{ secrets.AUTH_APP_PRIVATE_KEY }}
 
             - name: Configure git
               run: |
