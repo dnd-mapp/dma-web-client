@@ -29,6 +29,8 @@ jobs:
     bump-version:
         name: Bump version
         runs-on: ubuntu-22.04
+        outputs:
+            version: ${{ steps.bump-version.outputs.version }}
         steps:
             - name: Checkout repository
               uses: actions/checkout@v5
@@ -55,6 +57,7 @@ jobs:
                   git config user.email "dnd-mapp-github-authentication-app[bot]@users.noreply.github.com"
 
             - name: Bump version
+              id: bump-version
               run: |
                   release_type="${{ inputs.version }}"
                   prerelease_id="${{ inputs.prerelease-id }}"
@@ -65,6 +68,9 @@ jobs:
                       npm version "$release_type" --no-git-tag-version --preid "$prerelease_id"
                   fi
 
+                  version=$(node -p "require('./package-.json').version")
+                  echo "version=$version" >> $GITHUB_OUTPUT
+
             - name: Commit and push changes
               env:
                   GITHUB_TOKEN: ${{ steps.token.outputs.token }}
@@ -72,3 +78,40 @@ jobs:
                   git add .
                   git commit -m "chore: Bump version"
                   git push origin main
+
+    tag-and-release:
+        name: Create Tag and release
+        runs-on: ubuntu-22.04
+        needs: bump-version
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5
+
+            - name: Generate GitHub app token
+              id: token
+              uses: actions/create-github-app-token@v2
+              with:
+                  owner: dnd-mapp
+                  repositories: dma-web-client
+                  app-id: ${{ secrets.AUTH_APP_ID }}
+                  private-key: ${{ secrets.AUTH_APP_PRIVATE_KEY }}
+
+            - name: Configure git
+              run: |
+                  git config user.name "DnD Mapp GitHub Authentication App[bot]"
+                  git config user.email "dnd-mapp-github-authentication-app[bot]@users.noreply.github.com"
+
+            - name: Create and Push git tag
+              env: GITHUB_TOKEN ${{ steps.token.outputs.token }}
+              run: |
+                  version="${{ needs.bump-version.outputs.version }}"
+
+                  git tag "v$version"
+                  git push origin "v$version"
+
+            - name: Create GitHub release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: v${{ needs.bump-version.outputs.version }}
+                  name: Release v${{ needs.bump-version.outputs.version }}
+                  token: ${{ steps.token.outputs.token }}
