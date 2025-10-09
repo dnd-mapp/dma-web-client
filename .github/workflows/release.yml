@@ -46,6 +46,8 @@ jobs:
               with:
                   app-id: ${{ secrets.APP_ID }}
                   private-key: ${{ secrets.APP_PRIVATE_KEY }}
+                  owner: dnd-mapp
+                  repositories: dma-web-client
 
             - name: Configure git
               run: |
