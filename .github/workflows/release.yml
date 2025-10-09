@@ -52,13 +52,22 @@ jobs:
             - name: Configure git
               run: |
                   git config user.name "DnD Mapp GitHub Authentication App[bot]"
-                  git config.user.email "dnd-mapp-github-authentication-app[bot]@users.noreply.github.com"
+                  git config user.email "dnd-mapp-github-authentication-app[bot]@users.noreply.github.com"
 
             - name: Bump version
-              run: npm version ${{ inputs.version }} --preid ${{ inputs.prerelease-id }} --no-git-tag-version
+              run: |
+                  release_type="${{ inputs.version }}"
+                  prerelease_id="${{ inputs.prerelease-id }}"
+
+                  if [ -z "$prerelease_id" ]; then
+                      npm version "$release_type" --no-git-tag-version
+                  else
+                      npm version "$release_type" --no-git-tag-version --preid "$prerelease_id"
+                  fi
 
             - name: Commit and push changes
-              env: ${{ steps.token.outputs.token }}
+              env:
+                  GITHUB_TOKEN: ${{ steps.token.outputs.token }}
               run: |
                   git add .
                   git commit -m "chore: Bump version"
