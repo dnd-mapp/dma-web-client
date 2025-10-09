@@ -129,7 +129,7 @@ jobs:
               uses: softprops/action-gh-release@v2
               with:
                   tag_name: v${{ needs.bump-version.outputs.version }}
-                  name: Release v${{ needs.bump-version.outputs.version }}
+                  name: v${{ needs.bump-version.outputs.version }}
                   token: ${{ steps.token.outputs.token }}
                   prerelease: ${{ needs.bump-version.outputs.prerelease == 'true' }}
                   make_latest: ${{ needs.bump-version.outputs.prerelease == 'false' }}
