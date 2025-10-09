@@ -7,6 +7,12 @@
             "options": {
                 "parser": "angular"
             }
+        },
+        {
+            "files": ["*yml"],
+            "options": {
+                "singleQuote": false
+            }
         }
     ],
     "plugins": ["prettier-plugin-organize-imports"],
