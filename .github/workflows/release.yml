@@ -31,6 +31,7 @@ jobs:
         runs-on: ubuntu-22.04
         outputs:
             version: ${{ steps.bump-version.outputs.version }}
+            prerelease: ${{ steps.bump-version.outputs.prerelease }}
         steps:
             - name: Checkout repository
               uses: actions/checkout@v5
@@ -70,6 +71,14 @@ jobs:
 
                   version=$(node -p "require('./package-.json').version")
                   echo "version=$version" >> $GITHUB_OUTPUT
+
+                  if [ "$version" == *"-"* ]; then
+                      prerelease="true"
+                  else
+                      prerelease="false"
+                  fi
+
+                  echo "prerelease=$prerelease" >> $GITHUB_OUTPUT
 
             - name: Commit and push changes
               env:
@@ -115,3 +124,5 @@ jobs:
                   tag_name: v${{ needs.bump-version.outputs.version }}
                   name: Release v${{ needs.bump-version.outputs.version }}
                   token: ${{ steps.token.outputs.token }}
+                  prerelease: ${{ needs.bump-version.outputs.prerelease == 'true' }}
+                  make_latest: ${{ needs.bump-version.outputs.prerelease == 'false' }}
