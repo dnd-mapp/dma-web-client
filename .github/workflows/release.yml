@@ -19,9 +19,10 @@ on:
                 required: false
                 type: choice
                 options:
-                    - alpha
-                    - beta
-                    - rc
+                    - ""
+                    - "alpha"
+                    - "beta"
+                    - "rc"
 jobs:
     bump-version:
         name: Bump version
