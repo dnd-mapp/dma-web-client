@@ -25,6 +25,9 @@ on:
                     - "rc"
 permissions:
     contents: write
+concurrency:
+    group: release
+    cancel-in-progress: false
 jobs:
     bump-version:
         name: Bump version
