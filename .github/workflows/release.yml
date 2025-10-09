@@ -35,6 +35,7 @@ jobs:
         outputs:
             version: ${{ steps.bump-version.outputs.version }}
             prerelease: ${{ steps.bump-version.outputs.prerelease }}
+            token: ${{ steps.token.outputs.token }}
         steps:
             - name: Checkout repository
               uses: actions/checkout@v5
@@ -98,15 +99,7 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v5
-
-            - name: Generate GitHub app token
-              id: token
-              uses: actions/create-github-app-token@v2
               with:
-                  owner: dnd-mapp
-                  repositories: dma-web-client
-                  app-id: ${{ secrets.AUTH_APP_ID }}
-                  private-key: ${{ secrets.AUTH_APP_PRIVATE_KEY }}
 
             - name: Configure git
               run: |
@@ -115,7 +108,7 @@ jobs:
 
             - name: Create and Push git tag
               env:
-                  GITHUB_TOKEN: ${{ steps.token.outputs.token }}
+                  GITHUB_TOKEN: ${{ needs.bump-version.outputs.token }}
               run: |
                   version="${{ needs.bump-version.outputs.version }}"
 
@@ -127,6 +120,6 @@ jobs:
               with:
                   tag_name: v${{ needs.bump-version.outputs.version }}
                   name: Release v${{ needs.bump-version.outputs.version }}
-                  token: ${{ steps.token.outputs.token }}
+                  token: ${{ needs.bump-version.outputs.token }}
                   prerelease: ${{ needs.bump-version.outputs.prerelease == 'true' }}
                   make_latest: ${{ needs.bump-version.outputs.prerelease == 'false' }}
