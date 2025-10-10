@@ -25,6 +25,7 @@ on:
                     - "rc"
 permissions:
     contents: write
+    packages: write
 concurrency:
     group: release
     cancel-in-progress: false
@@ -133,3 +134,43 @@ jobs:
                   token: ${{ steps.token.outputs.token }}
                   prerelease: ${{ needs.bump-version.outputs.prerelease == 'true' }}
                   make_latest: ${{ needs.bump-version.outputs.prerelease == 'false' }}
+    docker-build:
+        name: Build and push Docker image
+        needs:
+            - bump-version
+            - tag-and-release
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5
+              with:
+                  ref: main
+                  fetch-depth: 0
+
+            - name: Generate tags
+              id: tags
+              run: |
+                  version="${{ needs.bump-version.outputs.version }}"
+                  is_prerelease="${{ needs.bump-version.outputs.prerelease }}"
+
+                  tags="${version}"
+
+                  if [ "$is_prerelease" = "false" ]; then
+                      if [[ $version =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+                          major="${BASH_REMATCH[1]}"
+                          minor="${BASH_REMATCH[2]}"
+
+                          tags="${tags},${major}.${minor}"
+                          tags="${tags},${major}"
+                          tags="${tags},latest"
+                      fi
+                  fi
+
+                  echo "tags=${tags}" >> $GITHUB_OUTPUT
+                  echo "Generated tags: ${tags}"
+
+            - name: Build and push Docker image
+              uses: ./.github/actions/docker-build
+              with:
+                  tags: ${{ steps.tags.outputs.tags  }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
