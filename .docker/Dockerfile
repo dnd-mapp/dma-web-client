@@ -13,6 +13,8 @@ RUN npm run build
 
 FROM nginx:alpine3.22
 
+LABEL org.opencontainers.image.documentation="https://github.com/dnd-mapp/dma-web-client/blob/main/.docker/README.md"
+
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder /app/dist/dma-web-client/browser /usr/share/nginx/html
