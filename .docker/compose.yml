@@ -1,0 +1,9 @@
+services:
+    dma-web-client:
+        image: ghcr.io/dnd-mapp/dma-web-client
+        container_name: dma-web-client
+        restart: unless-stopped
+        ports:
+            - "4200:80"
+        volumes:
+            - ./config.json:/usr/share/nginx/html/config.json
