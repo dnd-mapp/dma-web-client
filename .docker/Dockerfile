@@ -15,7 +15,7 @@ FROM nginx:alpine3.22
 
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=builder /app/dist/dma-web-client/browser /urs/share/nginx/html
+COPY --from=builder /app/dist/dma-web-client/browser /usr/share/nginx/html
 
 COPY .docker/config.json /usr/share/nginx/html/config.json
 
