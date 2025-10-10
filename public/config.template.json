@@ -1,0 +1,5 @@
+{
+    "authServerBaseUrl": "https://localhost.auth.dndmapp.dev:4300/server",
+    "resourcesServerBaseUrl": "https://localhost.resources.dndmapp.dev:4400/server",
+    "playerServerBaseUrl": "https://localhost.player.dndmapp.dev:4500/server"
+}

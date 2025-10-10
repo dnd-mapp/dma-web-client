@@ -15,8 +15,9 @@
                         "allowedCommonJsDependencies": [],
                         "assets": [
                             {
+                                "input": "public",
                                 "glob": "**/*",
-                                "input": "public"
+                                "ignore": ["**/*.template*"]
                             }
                         ],
                         "browser": "src/main.ts",
