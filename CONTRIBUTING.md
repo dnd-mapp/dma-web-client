@@ -153,7 +153,7 @@ When you are ready to submit your changes, open a Pull Request (PR) on GitHub. P
 
 ## License
 
-By contributing to dma-web-client, you agree that your contributions will be licensed under its [MIT License](LICENSE).
+By contributing to dma-web-client, you agree that your contributions will be licensed under its [AGPL-3.0 License](LICENSE).
 
 ---
 
