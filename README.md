@@ -101,29 +101,106 @@ This application may require certain configuration files to be set up.
     ```
 
 3.  **Trust the certificate:** In order to prevent HTTPS warnings from your browser you must add them as trusted certificates. Follow the steps below for your Operating System:
-    -  For Windows:
-       1.  Press <kbd>&#8862; Win</kbd>+<kbd>R</kbd> to open `Run`.
-       2.  Type `mmc` and press <kbd>⏎ Enter</kbd> to open `Microsoft Management Console` (You may need to accept that this app may make changes to your device).
-       3.  Press <kbd>CTRL</kbd>+<kbd>M</kbd> to add or remove Snap-ins.
-       4.  Add the `Certificates` snap-in, confirm that it'll manage certificates for your user account, and confirm the selection of snap-ins.
-       5.  In the side panel, navigate to `Console Root > Certificates - Current User > Trusted Root Certification Authorities > Certificates`.
-       6.  In the top bar, open the `Action` menu, open the `All Tasks` sub menu, and select the `Import...` task.
-       7.  Click on next to confirm that the store location is for the `Current User`.
-       8.  Click on `Browse...`, navigate to the repository root folder, allow all file types, and select the `certificate.pem`.
-       9.  Continue and finish by placing the certificate under the `Trusted Root Certification Authorities` store (There's no need to save the console settings).
-    
-    -  For all Operating Systems: You need to restart your browser after trusting the certificate to complete the process.
+    <ul>
+        <li>
+            <details>
+                <summary>For Windows:</summary>
+                <ol>
+                    <li>
+                        Press <kbd>&#8862; Win</kbd>+<kbd>R</kbd> to open `Run`.
+                    </li>
+                    <li>
+                        Type `mmc` and press <kbd>⏎ Enter</kbd> to open `Microsoft Management Console` (You may need to accept that this app may make changes to your device).
+                    </li>
+                    <li>
+                        Press <kbd>CTRL</kbd>+<kbd>M</kbd> to add or remove Snap-ins.
+                    </li>
+                    <li>
+                        Add the `Certificates` snap-in, confirm that it'll manage certificates for your user account, and confirm the selection of snap-ins.
+                    </li>
+                    <li>
+                        In the side panel, navigate to `Console Root > Certificates - Current User > Trusted Root Certification Authorities > Certificates`.
+                    </li>
+                    <li>
+                        In the top bar, open the `Action` menu, open the `All Tasks` sub menu, and select the `Import...` task.
+                    </li>
+                    <li>
+                        Click on next to confirm that the store location is for the `Current User`.
+                    </li>
+                    <li>
+                        Click on `Browse...`, navigate to the repository root folder, allow all file types, and select the `certificate.pem`.
+                    </li>
+                    <li>
+                        Continue and finish by placing the certificate under the `Trusted Root Certification Authorities` store (There's no need to save the console settings).
+                    </li>
+                </ol>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>For macOS:</summary>
+                <ol>
+                    <li>
+                        Press <kbd>⌘ Command</kbd>+<kbd>Space</kbd>.
+                    </li>
+                    <li>
+                        Search for and open `Keychain Access` (You might get prompted to provide your password).
+                    </li>
+                    <li>
+                        Open the root folder of the repository in finder.
+                    </li>
+                    <li>
+                        Make sure that "Keychain Access" has the `login` section open on `All Items`.
+                    </li>
+                    <li>
+                        Drag the certificate from finder into the Keychain Access (You might get an error message "-26276" indicating that the import of the certificate was not possible).
+                    </li>
+                    <li>
+                        Find the certificate by the looking for it by the name `localhost.www.dndmapp.dev`, Right click on it and select `Get Info`.
+                    </li>
+                    <li>
+                        Expand the `Trust` section and set `Secure Sockets Layer (SSL)` to `Always Trust`.
+                    </li>
+                    <li>
+                        You may now close all windows (You might get prompted to provide your password to save the changes).
+                    </li>
+                </ol>
+            </details>
+        </li>
+        <li>For all Operating Systems: You need to restart your browser after trusting the certificate to complete the process.</li>
+    </ul>
 
 4.  **Update the hosts file:** To be able to use the custom host names you need to update the hosts file. Follow the steps below for your Operating System:
-    -  The following contents will need to be added to the Hosts file, no matter the OS of your device:
-       ```text
-       127.0.0.1    localhost.www.dndmapp.dev
-       ```
-
-    -  For Windows:
-       1.  Run a text editor like Notepad or Notepad++ as Administrator.
-       2.  Open the Hosts file on the following location: `C:\Windows\System32\drivers\etc\hosts`.
-       3.  Add the contents from above in the file, save, and close the file.
+    <ul>
+        <li>
+            <p>
+                The following contents will need to be added to the Hosts file, no matter the OS of your device:
+            </p>
+            <pre>127.0.0.1    localhost.www.dndmapp.dev</pre>
+        </li>
+        <li>
+            <details>
+                <summary>For Windows:</summary>
+                <ol>
+                    <li>Run a text editor like Notepad or Notepad++ as Administrator.</li>
+                    <li>Open the Hosts file on the following location: <pre>C:\Windows\System32\drivers\etc\hosts</pre></li>
+                    <li>Add the contents from above in the file, save, and close the file.</li>
+                </ol>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>For macOS:</summary>
+                <ol>
+                    <li>Open a terminal.</li>
+                    <li>
+                        Using your favorite CLI text editor tool, open the hosts file located at: <pre>/etc/hosts</pre> (You might need to use <code>sudo</code> to have write permissions for this file).
+                    </li>
+                    <li>Add the contents from above in this file. After that you may save and close the file.</li>
+                </ol>
+            </details>
+        </li>
+    </ul>
 
 ---
 
