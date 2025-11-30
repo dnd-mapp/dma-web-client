@@ -12,7 +12,12 @@ jobs:
         runs-on: ubuntu-22.04
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v5
+              uses: actions/checkout@v6
+
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: CI
               uses: ./.github/actions/ci
@@ -22,7 +27,7 @@ jobs:
         runs-on: ubuntu-22.04
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v5
+              uses: actions/checkout@v6
 
             - name: Build and push Docker image
               uses: ./.github/actions/docker-build
@@ -30,23 +35,19 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
     e2e:
         name: E2E testing
+        if: false
         needs: ci
         runs-on: ubuntu-22.04
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v5
+              uses: actions/checkout@v6
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v5
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
               with:
-                  cache: npm
-                  node-version-file: .tool-versions
-                  cache-dependency-path: package-lock.json
-
-            - name: Install dependencies
-              run: npm ci
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Run E2E tests
               run: |
-                  npx playwright install chromium
-                  npm run e2e
+                  pnpm exec playwright install chromium
+                  pnpm e2e

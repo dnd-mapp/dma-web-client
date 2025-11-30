@@ -21,12 +21,15 @@ runs:
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v3
 
+        - name: Prepare npm config
+          shell: bash
+          run: echo "//npm.pkg.github.com/:_authToken=${{ inputs.token }}" >> .npmrc
+
         - name: Build and Push
           uses: docker/bake-action@v6
           env:
-              ACTIONS_RUNTIME_TOKEN: ${{ inputs.token }}
-              ACTIONS_CACHE_SERVICE_V2: true
               TAGS: ${{ inputs.tags }}
           with:
               files: .docker/docker-bake.hcl
               push: true
+              source: .
