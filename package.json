@@ -2,20 +2,26 @@
     "name": "dma-web-client",
     "version": "1.0.0",
     "private": true,
+    "license": "UNLICENSED",
+    "engines": {
+        "node": ">=24",
+        "npm": ">=11",
+        "pnpm": ">=10"
+    },
+    "packageManager": "pnpm@10.24.0",
     "scripts": {
-        "ng": "npx ng",
-        "start": "npx ng serve",
-        "start:http": "npx ng serve -c http",
-        "build": "npx ng build",
-        "build:dev": "npx ng build -c dev",
+        "start": "pnpm exec ng serve",
+        "start:http": "pnpm exec ng serve -c http",
+        "build": "pnpm exec ng build",
+        "build:dev": "pnpm exec ng build -c dev",
         "docker:build": "docker buildx bake -f .docker/docker-bake.hcl",
-        "test": "npx vitest run",
-        "test:dev": "npx vitest",
-        "test:coverage-reports": "npx vite preview --outDir reports/dma-web-client",
-        "e2e": "npx playwright test -c e2e/playwright.config.ts",
-        "lint": "ng lint",
-        "format:check": "npx prettier -l .",
-        "format:write": "npx prettier -w ."
+        "test": "pnpm exec vitest run",
+        "test:dev": "pnpm exec vitest",
+        "test:coverage-reports": "pnpm exec vite preview --outDir reports/dma-web-client",
+        "e2e": "pnpm exec playwright test -c e2e/playwright.config.ts",
+        "lint": "pnpm exec ng lint",
+        "format:check": "pnpm exec prettier -l .",
+        "format:write": "pnpm exec prettier -w ."
     },
     "dependencies": {
         "@angular/cdk": "~20.2.0",

@@ -41,7 +41,7 @@ export default defineConfig({
               }),
     },
     webServer: {
-        command: isCI ? 'npm run start:http' : 'npm run start',
+        command: 'pnpm start',
         ignoreHTTPSErrors: true,
         reuseExistingServer: !isCI,
         url: baseUrl,
