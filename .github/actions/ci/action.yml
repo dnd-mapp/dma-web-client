@@ -3,18 +3,6 @@ description: Runs Continuous Integration
 runs:
     using: composite
     steps:
-        - name: Setup Node.js
-          uses: actions/setup-node@v6
-          with:
-              cache: "pnpm"
-              node-version-file: ".tool-versions"
-              cache-dependency-path: "pnpm-lock.yaml"
-              scope: "@dnd-mapp"
-
-        - name: Install dependencies
-          shell: bash
-          run: pnpm install
-
         - name: Check formatting
           shell: bash
           run: pnpm format:check

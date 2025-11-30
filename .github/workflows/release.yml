@@ -40,13 +40,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v6
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v6
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
               with:
-                  cache: "pnpm"
-                  node-version-file: ".tool-versions"
-                  cache-dependency-path: "pnpm-lock.yaml"
-                  scope: "@dnd-mapp"
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Generate GitHub app token
               id: token

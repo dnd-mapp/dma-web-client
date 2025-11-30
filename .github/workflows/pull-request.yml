@@ -11,5 +11,10 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v6
 
+            - name: Setup environment
+              uses: ./.github/actions/setup-environment
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
             - name: CI
               uses: ./.github/actions/ci
