@@ -1,14 +1,14 @@
-.angular/
-.vite/
-dist/
-reports/
+*
 
-.github/
+!.docker/config.json
+!.docker/nginx.conf
 
-.idea/
-.vscode/
+!public/
+!src/
 
-node_modules/
-
-certificate*.pem
-public/config.json
+!.npmrc
+!angular.json
+!package.json
+!pnpm-lock.yaml
+!tsconfig.app.json
+!tsconfig.json
